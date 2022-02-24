@@ -2,6 +2,5 @@
 .idea
 *.iml
 /src/main/java/OrderLogic.java
-/src/main/java/Main.java
 *.log
 /target/
