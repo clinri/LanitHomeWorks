@@ -4,14 +4,14 @@ public class Calculator {
     public static String execute(String[] params){
         String a = params[1];
         String b = params[2];
-        switch ((params[0]).charAt(0)){
-            case '+':
+        switch (params[0]){
+            case "+":
                 return add(a,b);
-            case '-':
+            case "-":
                 return sub(a,b);
-            case '*':
+            case "*":
                 return multi(a,b);
-            case '/':
+            case "/":
                 return div(a,b);
         }
         return "";
@@ -19,19 +19,19 @@ public class Calculator {
 
     private static String add(String a, String b){
 //        return a + b;
-        return "";
+        return "++";
     }
     private static String sub(String a, String b){
 //        return a - b;
-        return "";
+        return "--";
     }
     private static String multi(String a, String b){
 //        return a - b;
-        return "";
+        return "**";
     }
     private static String div(String a, String b){
 //        return a - b;
-        return "";
+        return "//";
     }
 }
 
