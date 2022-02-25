@@ -1,13 +1,13 @@
 package model;
 
 public class Calculator {
-    private String max = String.valueOf(Integer.MAX_VALUE);
-    private String min = String.valueOf(Integer.MIN_VALUE);
-    private int a = 0;
-    private int b = 0;
-    private int result = 0;
+    private static String max = String.valueOf(Integer.MAX_VALUE);
+    private static String min = String.valueOf(Integer.MIN_VALUE);
+    private static int a = 0;
+    private static int b = 0;
+    private static int result = 0;
 
-    public String execute(String[] params) {
+    public static String execute(String[] params) {
         String a = params[1];
         String b = params[2];
         switch (params[0]) {
@@ -24,7 +24,7 @@ public class Calculator {
         }
     }
 
-    private String add(String aStr, String bStr) {
+    private static String add(String aStr, String bStr) {
         int a = 0;
         int b = 0;
         int result;
@@ -41,7 +41,7 @@ public class Calculator {
         return String.valueOf(result);
     }
 
-    private String sub(String aStr, String bStr) {
+    private static String sub(String aStr, String bStr) {
         int a = 0;
         int b = 0;
         int result;
@@ -58,7 +58,7 @@ public class Calculator {
         return String.valueOf(result);
     }
 
-    private String multi(String aStr, String bStr) {
+    private static String multi(String aStr, String bStr) {
         int a = 0;
         int b = 0;
         int result;
@@ -75,7 +75,7 @@ public class Calculator {
         return String.valueOf(result);
     }
 
-    private String div(String aStr, String bStr) {
+    private static String div(String aStr, String bStr) {
         int a = 0;
         int b = 0;
         int result;
@@ -95,5 +95,3 @@ public class Calculator {
         return String.valueOf(result);
     }
 }
-
-

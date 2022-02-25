@@ -19,7 +19,6 @@ public class NegativeCalculatorTest {
     @Test(dataProvider = "negativeData", expectedExceptions = {CalculatorException.class})
     public static void negativeTest(String operator, String a, String b) {
         String[] params = {operator, a, b};
-        Calculator calculator = new Calculator();
-        System.out.println(calculator.execute(params));
+        System.out.println(Calculator.execute(params));
     }
 }

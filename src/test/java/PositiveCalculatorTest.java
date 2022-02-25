@@ -24,7 +24,6 @@ public class PositiveCalculatorTest {
     @Test(dataProvider = "positiveData")
     public static void positiveTest(String operator, String a, String b, String result) {
         String[] params = {operator, a, b};
-        Calculator calculator = new Calculator();
-        Assert.assertEquals(calculator.execute(params), result, "Несовпадение с ожидаемым значением");
+        Assert.assertEquals(Calculator.execute(params), result, "Несовпадение с ожидаемым значением");
     }
 }
