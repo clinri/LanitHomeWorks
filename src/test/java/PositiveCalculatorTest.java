@@ -12,10 +12,11 @@ public class PositiveCalculatorTest {
     public Object[][] positiveData() {
         LOG.info("DataProvider запущен");
         return new Object[][]{
-                {"+", "2", "2", "4.0"},
+                new String[]{"+", "2", "2", "4.0"},
+                {"+", "а", "2", "4.0"},
                 {"-", "3", "3", "0.0"},
-                {"*", '3', '3', "9.0"},
-                {"/", '3', '3', "1.0"}
+                {"*", "3", "3", "9.0"},
+                {"/", "3", "3", "1.0"}
         };
     }
 
@@ -23,6 +24,6 @@ public class PositiveCalculatorTest {
     public static void positiveTest(String operator, String a, String b, String result) {
         LOG.info("Тест запущен");
         String[] params = {operator, a, b};
-        Assert.assertEquals(Calculator.execute(params), result, "Сумма не верна");
+        Assert.assertEquals(Calculator.execute(params), result, "Несовпадение с ожидаемым значением");
     }
 }
