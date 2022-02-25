@@ -11,8 +11,11 @@ public class NegativeCalculatorTest {
         System.out.println(max);
         return new Object[][]{
                 {"/", "3", "0"},
-                {"+", max, "1"},
-                {"-", min, "1"}
+                {"+", max, "1.0"},
+                {"-", max, "-1"},
+                {"-", min, "1"},
+                {"+", min, "-1"},
+                {"?", min, "1"}
         };
     }
 

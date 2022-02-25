@@ -1,97 +1,72 @@
 package model;
 
 public class Calculator {
-    private static String max = String.valueOf(Integer.MAX_VALUE);
-    private static String min = String.valueOf(Integer.MIN_VALUE);
-    private static int a = 0;
-    private static int b = 0;
-    private static int result = 0;
+    private static final double MAX = Integer.MAX_VALUE;
+    private static double MIN = Integer.MIN_VALUE;
+    private static double a = 0;
+    private static double b = 0;
+    private static double result = 0;
 
     public static String execute(String[] params) {
-        String a = params[1];
-        String b = params[2];
+        a = Double.parseDouble(params[1]);
+        b = Double.parseDouble(params[2]);
+
         switch (params[0]) {
             case "+":
-                return add(a, b);
+                result = add(a, b);
+                break;
             case "-":
-                return sub(a, b);
+                result = sub(a, b);
+                break;
             case "*":
-                return multi(a, b);
+                result = multi(a, b);
+                break;
             case "/":
-                return div(a, b);
+                result = div(a, b);
+                break;
             default:
                 throw new CalculatorException("Неверный оператор");
         }
-    }
-
-    private static String add(String aStr, String bStr) {
-        int a = 0;
-        int b = 0;
-        int result;
-        try {
-            if (aStr.equals(max) || bStr.equals(max)) {
-                throw new Exception();
-            }
-            a = Integer.parseInt(aStr);
-            b = Integer.parseInt(bStr);
-            result = a + b;
-        } catch (Exception e) {
-            throw new CalculatorException(e.getMessage());
+        if (result > MAX || result < MIN) {
+            throw new CalculatorException("Вычисленное значение превышает максимальное значение");
         }
         return String.valueOf(result);
     }
 
-    private static String sub(String aStr, String bStr) {
-        int a = 0;
-        int b = 0;
-        int result;
+    private static void stringToDouble(String aStr, String bStr) {
+        // прием значений 0 и 0.0
         try {
-            if (aStr.equals(min)) {
-                throw new Exception();
+            try {
+                a = Double.parseDouble(aStr);
+            } catch (Exception e) {
+                a = Integer.parseInt(aStr);
             }
-            a = Integer.parseInt(aStr);
-            b = Integer.parseInt(bStr);
-            result = a - b;
+            try {
+                b = Double.parseDouble(bStr);
+            } catch (Exception e) {
+                b = Integer.parseInt(bStr);
+            }
         } catch (Exception e) {
             throw new CalculatorException(e.getMessage());
         }
-        return String.valueOf(result);
     }
 
-    private static String multi(String aStr, String bStr) {
-        int a = 0;
-        int b = 0;
-        int result;
-        try {
-            if (aStr.equals(max) || bStr.equals(max)) {
-                throw new Exception();
-            }
-            a = Integer.parseInt(aStr);
-            b = Integer.parseInt(bStr);
-            result = a * b;
-        } catch (Exception e) {
-            throw new CalculatorException(e.getMessage());
-        }
-        return String.valueOf(result);
+    private static double add(double a, double b) {
+        return a + b;
     }
 
-    private static String div(String aStr, String bStr) {
-        int a = 0;
-        int b = 0;
-        int result;
-        try {
-            if (aStr.equals(max) || bStr.equals(max)) {
-                throw new Exception();
-            }
-            a = Integer.parseInt(aStr);
-            b = Integer.parseInt(bStr);
-            if (b == 0) {
-                throw new Exception("Деление на 0");
-            }
-            result = a / b;
-        } catch (Exception e) {
-            throw new CalculatorException(e.getMessage());
+    private static double sub(double a, double b) {
+        return a - b;
+    }
+
+    private static double multi(double a, double b) {
+        return a * b;
+    }
+
+    private static double div(double a, double b) {
+        if (b == 0) {
+            throw new CalculatorException("Деление на 0");
         }
-        return String.valueOf(result);
+        return a / b;
     }
 }

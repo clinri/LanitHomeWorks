@@ -1,4 +1,5 @@
 import model.Calculator;
+import model.CalculatorException;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -24,6 +25,6 @@ public class PositiveCalculatorTest {
     @Test(dataProvider = "positiveData")
     public static void positiveTest(String operator, String a, String b, String result) {
         String[] params = {operator, a, b};
-        Assert.assertEquals(Calculator.execute(params), result, "Несовпадение с ожидаемым значением");
+        Assert.assertEquals(Calculator.execute(params), String.valueOf(Double.parseDouble(result)), "Несовпадение с ожидаемым значением");
     }
 }
