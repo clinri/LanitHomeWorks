@@ -8,9 +8,12 @@ public class Calculator {
     private static double result = 0;
 
     public static String execute(String[] params) {
-        a = Double.parseDouble(params[1]);
-        b = Double.parseDouble(params[2]);
-
+        try {
+            a = Double.parseDouble(params[1]);
+            b = Double.parseDouble(params[2]);
+        } catch (Exception e){
+            throw new CalculatorException(e.getMessage());
+        }
         switch (params[0]) {
             case "+":
                 result = add(a, b);

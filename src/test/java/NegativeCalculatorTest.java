@@ -15,7 +15,9 @@ public class NegativeCalculatorTest {
                 {"-", max, "-1"},
                 {"-", min, "1"},
                 {"+", min, "-1"},
-                {"?", min, "1"}
+                {"?", min, "1"},
+                {"+", "one", "two"},
+                {"+", null, null}
         };
     }
 
