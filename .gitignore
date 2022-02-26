@@ -1,6 +1,5 @@
 /out/
 .idea
 *.iml
-/src/main/java/OrderLogic.java
 *.log
 /target/
