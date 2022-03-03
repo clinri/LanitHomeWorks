@@ -1,23 +1,35 @@
 package api;
 
-import model.Status;
-import model.Ticket;
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.LogDetail;
+import io.restassured.http.ContentType;
+import model.*;
 import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
 
-/** Абстрактный класс, содержащий общие для всех тестов методы */
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.responseSpecification;
+
+/**
+ * Абстрактный класс, содержащий общие для всех тестов методы
+ */
 public abstract class BaseTest {
     @BeforeClass
     public void prepare() {
-        // todo: загрузить в системные переменные "base.uri" из "config.properties"
-
+        try {
+            System.getProperties().load(ClassLoader.getSystemResourceAsStream("config.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // системная переменная "base.uri" загружаются из "config.properties"
         String baseUri = System.getProperty("base.uri");
         if (baseUri == null || baseUri.isEmpty()) {
             throw new RuntimeException("В файле \"config.properties\" отсутствует значение \"base.uri\"");
         }
-
-        // todo: подготовить глобальные преднастройки для запросов
+        RestAssured.requestSpecification = Specifications.requestSpec(baseUri);
+        // подготовлены глобальные преднастройки для запросов
     }
 
     protected Ticket buildNewTicket(Status status, int priority) {
@@ -29,4 +41,7 @@ public abstract class BaseTest {
         // todo: отправить HTTP запрос для создания тикета
         return null;
     }
+
+
+
 }
