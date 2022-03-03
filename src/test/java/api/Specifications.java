@@ -8,10 +8,10 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 public class Specifications {
-    public static RequestSpecification requestSpec(String baseUri){
+    public static RequestSpecification requestSpec(String baseUri, int port){
         return new RequestSpecBuilder()
                 .setBaseUri(baseUri)
-                .setPort(25232)
+                .setPort(port)
                 .setContentType(ContentType.JSON)
                 .build();
     }

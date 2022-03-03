@@ -10,12 +10,13 @@ import static io.restassured.RestAssured.responseSpecification;
 public class AuthTest extends BaseTest {
     @Test
     public void authSuccessTest() {
-        String token = token();
-        System.out.println(token);
+        if (token.equals(null)) {
+            token = getToken();
+        }
         Assert.assertEquals(token,"c1803e6e3b12359683796496625e8518b2e082c3");
     }
 
-    protected static String token() {
+    protected static String getToken() {
         String name = System.getProperty("name.login");
         if (name == null || name.isEmpty()) {
             throw new RuntimeException("В файле \"config.properties\" отсутствует значение \"name.login\"");
