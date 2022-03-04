@@ -10,10 +10,11 @@ import static io.restassured.RestAssured.responseSpecification;
 public class AuthTest extends BaseTest {
     @Test
     public void authSuccessTest() {
-        if (token.equals(null)) {
+        if (token == null) {
             token = getToken();
+            System.out.println("Токен получен");
         }
-        Assert.assertEquals(token,"c1803e6e3b12359683796496625e8518b2e082c3");
+        Assert.assertEquals(token, "c1803e6e3b12359683796496625e8518b2e082c3");
     }
 
     protected static String getToken() {

@@ -2,6 +2,8 @@ package model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -9,59 +11,27 @@ import java.util.Objects;
  */
 public class Ticket {
     // serialized поля, геттеры и сеттеры
-    @SerializedName("id")
-    private int id;
-
-    @SerializedName("due_date")
-    private String dueDate;
-
+    private int id; //readOnly: true
+    private String due_date;
     @JsonIgnore
-    @SerializedName("assigned_to")
-    private Integer assignedTo;
-
-    @SerializedName("title")
-    private String title;
-
-    @SerializedName("created")
-    private String created;
-
-    @SerializedName("modified")
-    private String modified;
-
-    @SerializedName("submitter_email")
-    private String submitterEmail;
-
-    @SerializedName("status")
+    private String assigned_to; //pattern: ^[\w.@+-]+$
+    private String title; //maxLength: 200
+    private Date created; //Date this ticket was first created
+    private Date modified; //Date this ticket was most recently changed.
+    private String submitter_email; //nullable. The submitter will receive an email for all public follow-ups left for this task.
     private Enum<Status> status;
-
-    @SerializedName("on_hold")
-    private Boolean onHold;
-
-    @SerializedName("description")
-    private String description;
-
-    @SerializedName("resolution")
-    private String resolution;
-
-    @SerializedName("priority")
-    private int priority;
-
-    @SerializedName("last_escalation")
-    private String lastEscalation;
-
-    @SerializedName("secret_key")
-    private int secretKey;
-
-    @SerializedName("queue")
+    private boolean on_hold; //If a ticket is on hold, it will not automatically be escalated.
+    private String description; //nullable. The content of the customers query.
+    private String resolution; //nullable. The resolution provided to the customer by our staff.
+    private Enum<Priority> priority; //1 = Highest Priority, 5 = Low Priority
+    @JsonIgnore
+    private Date lastEscalation; // readOnly: true. Updated automatically by management/commands/escalate_tickets.py
+    private String secret_key; //Secret key needed for viewing/editing ticket by non-logged in users
     private int queue;
-
     @JsonIgnore
-    @SerializedName("kbitem")
-    private Integer kbitem;
-
+    private int kbitem; //nullable. Knowledge base item the user was viewing when they created this ticket.
     @JsonIgnore
-    @SerializedName("merged_to")
-    private Integer mergedTo;
+    private int merged_to; //nullable
 
     @Override
     public boolean equals(Object o) {

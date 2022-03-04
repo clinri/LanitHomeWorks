@@ -1,15 +1,9 @@
 package api;
 
 import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.filter.log.LogDetail;
-import io.restassured.http.ContentType;
 import model.*;
 import org.testng.annotations.BeforeClass;
-
 import java.io.IOException;
-
-import static io.restassured.RestAssured.*;
 
 /**
  * Абстрактный класс, содержащий общие для всех тестов методы
@@ -45,7 +39,5 @@ public abstract class BaseTest {
         // todo: отправить HTTP запрос для создания тикета
         return null;
     }
-
-
 
 }
