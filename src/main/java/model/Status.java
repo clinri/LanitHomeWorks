@@ -3,8 +3,7 @@ package model;
 /**  Статусы тикета, используемые в тестах */
 public enum Status {
     OPEN(1),
-    CLOSED(4),
-    ;
+    CLOSED(4);
 
     private final int code;
 

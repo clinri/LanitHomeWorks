@@ -27,9 +27,9 @@ public class AuthTest extends BaseTest {
             throw new RuntimeException("В файле \"config.properties\" отсутствует значение \"password.login\"");
         }
         AuthClass authClass = new AuthClass(name, password);
-        responseSpecification = Specifications.responseSpecOK200();
         return given()
                 .body(authClass)
+                .expect().statusCode(200)
                 .when()
                 .post(EndPoints.LOGIN)
                 .then()
