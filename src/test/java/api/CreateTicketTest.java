@@ -26,7 +26,7 @@ public class CreateTicketTest extends BaseTest {
         // todo: отправить HTTP запрос на получение тикета по его id
         System.out.println("Запущен метод получения тикета по id");
         Ticket[] ticket = given()
-                .param("id", String.valueOf(id))
+                .param("id",id)
                 .expect().statusCode(200)
                 .when()
                 .get(EndPoints.TICKETS)

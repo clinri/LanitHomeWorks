@@ -1,6 +1,8 @@
 package api;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import model.*;
 import org.testng.annotations.BeforeClass;
 import sun.security.jca.GetInstance;
@@ -39,11 +41,10 @@ public abstract class BaseTest {
         if (baseUri == null || baseUri.isEmpty()) {
             throw new RuntimeException("В файле \"config.properties\" отсутствует значение \"base.uri\"");
         }
-        int port = Integer.parseInt(System.getProperty("port.uri"));
-        if (port == 0) {
-            throw new RuntimeException("В файле \"config.properties\" отсутствует значение \"port.uri\"");
-        }
-        RestAssured.requestSpecification = Specifications.requestSpec(baseUri, port);
+        RestAssured.requestSpecification = new RequestSpecBuilder()
+                .setBaseUri(baseUri)
+                .setContentType(ContentType.JSON)
+                .build();
         // подготовлены глобальные преднастройки для запросов
         token = AuthTest.getToken();
         System.out.println("Токен получен");
