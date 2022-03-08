@@ -11,6 +11,7 @@ public class Ticket {
     // serialized поля, геттеры и сеттеры
     private Integer id; //readOnly: true
     private String due_date;
+    @JsonIgnore
     private String assigned_to; //pattern: ^[\w.@+-]+$
     private String title; //maxLength: 200
     private String created; //Date this ticket was first created
@@ -24,9 +25,9 @@ public class Ticket {
     private String lastEscalation; // readOnly: true. Updated automatically by management/commands/escalate_tickets.py
     private String secret_key; //Secret key needed for viewing/editing ticket by non-logged in users
     private Integer queue; //*
-    //@JsonIgnore
+    @JsonIgnore
     private Integer kbitem; //nullable. Knowledge base item the user was viewing when they created this ticket.
-    //@JsonIgnore
+    @JsonIgnore
     private Integer merged_to; //nullable
 
     public Ticket(String due_date, String title,
