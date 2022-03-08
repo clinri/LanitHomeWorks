@@ -9,6 +9,9 @@ import org.testng.annotations.Test;
 import pages.AbstractPage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
 public class HelpdeskUITest {
@@ -35,8 +38,8 @@ public class HelpdeskUITest {
     public void createTicketTest() {
         // Заполняем объект класс Ticket необходимыми тестовыми данными
         ticket = buildNewTicket();
-
         // todo: открыть главную страницу
+        driver.get(System.getProperty("site.url"));
         // todo: создать объект главной страницы и выполнить шаги по созданию тикета
         // todo: перейти к странице авторизации и выполнить вход
         // todo: найти созданный тикет и проверить поля
@@ -52,10 +55,17 @@ public class HelpdeskUITest {
      */
     protected Ticket buildNewTicket() {
         Ticket ticket = new Ticket();
-
-        ticket.setTitle("");
+        ticket.setTitle("Тестовое название проблемы");
         // todo: заполнить остальные необходимые поля тикета
-
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime dueLocalDate = LocalDateTime.now().plus(5, ChronoUnit.DAYS);
+        String dueDate = dtf.format(dueLocalDate);
+        ticket.setDue_date(dueDate);
+        ticket.setSubmitter_email("test@ya.ru");
+        ticket.setStatus(1);
+        ticket.setDescription("Тестовое описание");
+        ticket.setPriority(1);
+        ticket.setQueue(1);
         return ticket;
     }
 
