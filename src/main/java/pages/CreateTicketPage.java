@@ -32,6 +32,23 @@ public class CreateTicketPage extends HelpdeskBasePage {
     }
 
     // todo: методы заполнения остальных полей
+    //         Select queueSelect = new Select(webDriver.findElement(By.xpath("//select[@id='id_queue']")));
+    //        queueSelect.getOptions().forEach(option -> {
+    //            System.out.println(option.getText());
+    //        });
+    //        queueSelect.selectByValue("1");
+    //        webDriver.findElement(By.xpath("//input[@id='id_title']")).sendKeys("Тестовое название ошибки");
+    //        webDriver.findElement(By.xpath("//textarea[@id='id_body']")).sendKeys("Тестовое описание ошибки");
+    //        Select prioritySelect = new Select(webDriver.findElement(By.xpath("//select[@id='id_priority']")));
+    //        queueSelect.getOptions().forEach(option -> {
+    //            System.out.println(option.getText());
+    //        });
+    //        prioritySelect.selectByValue("1");
+    //        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    //        LocalDateTime dueLocalDate = LocalDateTime.now().plus(5, ChronoUnit.DAYS);
+    //        String dueDate = dtf.format(dueLocalDate);
+    //        webDriver.findElement(By.xpath("//input[@id='id_due_date']")).sendKeys(dueDate + " 00:00:00");
+    //        webDriver.findElement(By.xpath("//input[@id='id_submitter_email']")).sendKeys("test@ya.ru");
 
     /** Зажатие кнопки "Submit Ticket" */
     public void createTicket() {
