@@ -5,22 +5,13 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import model.*;
 import org.testng.annotations.BeforeClass;
-import sun.security.jca.GetInstance;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Date;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.responseSpecification;
 
 /**
  * Абстрактный класс, содержащий общие для всех тестов методы
@@ -93,9 +84,9 @@ public abstract class BaseTest {
         if (password == null || password.isEmpty()) {
             throw new RuntimeException("В файле \"config.properties\" отсутствует значение \"password.login\"");
         }
-        AuthClass authClass = new AuthClass(name, password);
+        AuthToken authToken = new AuthToken(name, password);
         return given()
-                .body(authClass)
+                .body(authToken)
                 .expect().statusCode(200)
                 .when()
                 .post(EndPoints.LOGIN)

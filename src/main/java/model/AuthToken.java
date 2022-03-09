@@ -1,10 +1,10 @@
 package model;
 
-public class AuthClass {
+public class AuthToken {
     private String username;
     private String password;
 
-    public AuthClass(String username, String password) {
+    public AuthToken(String username, String password) {
         this.username = username;
         this.password = password;
     }
