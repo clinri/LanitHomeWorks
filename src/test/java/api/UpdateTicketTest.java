@@ -35,9 +35,6 @@ public class UpdateTicketTest extends BaseTest {
                 .then()
                 .log().all()
                 .extract().statusCode();
-//        RequestSpecification httpRequest = RestAssured.given().body(ticket);
-//        Response response = httpRequest.put(EndPoints.TICKETS + "/" + ticket.getId());
-//        int statusCode = response.getStatusCode();
         System.out.println(statusCode);
         if (statusCode % 100 == 4) {
             throw new RuntimeException("статус код: " + statusCode);

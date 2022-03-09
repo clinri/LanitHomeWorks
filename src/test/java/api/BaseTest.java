@@ -46,7 +46,7 @@ public abstract class BaseTest {
                 .setContentType(ContentType.JSON)
                 .build();
         // подготовлены глобальные преднастройки для запросов
-        token = AuthTest.getToken();
+        token = getToken();
         System.out.println("Токен получен");
     }
 
@@ -84,27 +84,23 @@ public abstract class BaseTest {
         return ticketResponce;
     }
 
-//    public static void main(String[] args) {
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
-//        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//        LocalDateTime when =
-//                LocalDateTime.of(2016, Month.AUGUST, 12, 9, 38, 12, 123456789);
-//        LocalDateTime time = LocalDateTime.parse("2022-03-05T06:16:49.018615");
-//        LocalDateTime t2 = LocalDateTime.now().plus(1, ChronoUnit.DAYS);
-//        String DATE_TIME_FORMAT_PATTERN = "yyyy-MM-dd";
-//        DateTimeFormatter formatter1 = new DateTimeFormatterBuilder()
-//                .appendPattern(DATE_TIME_FORMAT_PATTERN)
-//                .appendFraction(ChronoField.MICRO_OF_SECOND, 6, 6, true)
-//                .toFormatter();
-//        System.out.println(LocalDateTime.now().format(formatter1));
-//        System.out.println(when.format(formatter1));
-//        System.out.println(when.format(dtf));
-//        System.out.println(time.format(dtf));
-//
-//        System.out.println(Instant.now().plus(1, ChronoUnit.DAYS));
-//        System.out.println(Instant.now());
-//        System.out.println(dtf1.format(t2));
-//
-//    }
-
+    protected static String getToken() {
+        String name = System.getProperty("name.login");
+        if (name == null || name.isEmpty()) {
+            throw new RuntimeException("В файле \"config.properties\" отсутствует значение \"name.login\"");
+        }
+        String password = System.getProperty("password.login");
+        if (password == null || password.isEmpty()) {
+            throw new RuntimeException("В файле \"config.properties\" отсутствует значение \"password.login\"");
+        }
+        AuthClass authClass = new AuthClass(name, password);
+        return given()
+                .body(authClass)
+                .expect().statusCode(200)
+                .when()
+                .post(EndPoints.LOGIN)
+                .then()
+                .log().all()
+                .extract().jsonPath().getString("token");
+    }
 }
